@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { ThreadsAPI } from 'threads-api'
 
 type Props = { params: { code: string; userName: string } }
@@ -22,16 +23,18 @@ export default async function ({ params }: Props) {
       <section>
         <h1>reply</h1>
         <ul className={'flex flex-col gap-y-2'}>
-          {thread.reply_threads?.map((replyThreads) =>
-            replyThreads.thread_items.map((threadItem, index) => (
-              <li key={`reply_threads_${threadItem.post.id}_${index}`}>
-                <div>
-                  <p>user name: {threadItem.post.user.username}</p>
-                  <p>message: {threadItem.post.caption?.text}</p>
-                </div>
-              </li>
-            ))
-          )}
+          {thread.reply_threads?.map((replyThreads, index) => (
+            <Fragment key={`replyThreads_${replyThreads.id}_${index}`}>
+              {replyThreads.thread_items.map((threadItem, index) => (
+                <li key={`reply_threads_${threadItem.post.id}_${index}`}>
+                  <div>
+                    <p>user name: {threadItem.post.user.username}</p>
+                    <p>message: {threadItem.post.caption?.text}</p>
+                  </div>
+                </li>
+              ))}
+            </Fragment>
+          ))}
         </ul>
       </section>
     </div>
