@@ -1,0 +1,7 @@
+.idea
+.vscode
+.next
+package.json
+pnpm-lock.yaml
+node_modules
+README.md
