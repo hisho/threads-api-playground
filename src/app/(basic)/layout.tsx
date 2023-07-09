@@ -5,5 +5,5 @@ type Props = {
 }
 
 export default function ({ children }: Props) {
-  return <main>{children}</main>
+  return <main className={'h-[100svh]'}>{children}</main>
 }

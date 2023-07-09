@@ -25,6 +25,7 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.1",
     "tailwind-merge": "^1.13.2",
+    "threads-api": "^1.1.1",
     "ts-pattern": "^5.0.1",
     "zod": "^3.21.4"
   },
