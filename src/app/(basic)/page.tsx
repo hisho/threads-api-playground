@@ -1,7 +1,9 @@
 'use client'
 
 import { useForm } from '@/src/lib/form/use-form/use-form'
+import { cn } from '@/src/util/cn/cn'
 import { useRouter } from 'next/navigation'
+import { useTransition } from 'react'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -10,6 +12,7 @@ const schema = z.object({
 
 export default function () {
   const router = useRouter()
+  const [isPending, startTransition] = useTransition()
   const form = useForm({
     schema,
   })
@@ -20,8 +23,10 @@ export default function () {
   return (
     <div className={'flex h-full items-center justify-center'}>
       <form
+        onSubmit={(e) =>
+          startTransition(() => form.handleSubmit((i) => handleSubmit(i))(e))
+        }
         className={'flex w-full max-w-lg flex-col items-center'}
-        onSubmit={form.handleSubmit(handleSubmit)}
       >
         <label className={'flex w-full'} htmlFor={'userName'}>
           user name
@@ -35,7 +40,15 @@ export default function () {
             {form.formState.errors.userName.message}
           </p>
         )}
-        <button className={'mt-2 rounded border px-1'}>検索</button>
+        <button
+          className={cn(
+            'mt-2 rounded border px-1',
+            isPending && 'pointer-events-none cursor-progress bg-gray-400'
+          )}
+          disabled={isPending}
+        >
+          {isPending ? '検索中' : '検索'}
+        </button>
       </form>
     </div>
   )
