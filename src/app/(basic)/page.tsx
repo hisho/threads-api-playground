@@ -1,7 +1,7 @@
 'use client'
 
+import { Button } from '@/src/component/button/button'
 import { useForm } from '@/src/lib/form/use-form/use-form'
-import { cn } from '@/src/util/cn/cn'
 import { useRouter } from 'next/navigation'
 import { useTransition } from 'react'
 import { z } from 'zod'
@@ -40,15 +40,13 @@ export default function () {
             {form.formState.errors.userName.message}
           </p>
         )}
-        <button
-          className={cn(
-            'mt-2 rounded border px-2 py-1',
-            isPending && 'pointer-events-none cursor-progress bg-gray-400'
-          )}
-          disabled={isPending}
+        <Button
+          className={'mt-2 rounded border px-2 py-1'}
+          isLoading={isPending}
+          type={'submit'}
         >
-          {isPending ? '検索中' : '検索'}
-        </button>
+          検索
+        </Button>
       </form>
     </div>
   )
