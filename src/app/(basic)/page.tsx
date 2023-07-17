@@ -26,7 +26,7 @@ export default function () {
         onSubmit={(e) =>
           startTransition(() => form.handleSubmit((i) => handleSubmit(i))(e))
         }
-        className={'flex w-full max-w-lg flex-col items-center'}
+        className={'flex w-full max-w-100 flex-col items-center'}
       >
         <label className={'flex w-full'} htmlFor={'userName'}>
           user name
@@ -42,7 +42,7 @@ export default function () {
         )}
         <button
           className={cn(
-            'mt-2 rounded border px-1',
+            'mt-2 rounded border px-2 py-1',
             isPending && 'pointer-events-none cursor-progress bg-gray-400'
           )}
           disabled={isPending}
