@@ -29,5 +29,6 @@ module.exports = {
         html: true,
       },
     ],
+    'tailwindcss/no-custom-classname': 'error',
   },
 }
